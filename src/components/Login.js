@@ -7,10 +7,9 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/fireBase";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
-import { Photo_url } from "../utils/constants";
+import { LOGO, Photo_url } from "../utils/constants";
 
 const Login = () => {
   const [signUp, setsignUp] = useState(false);
@@ -18,7 +17,6 @@ const Login = () => {
   const email = useRef(null);
   const passwd = useRef(null);
   const name = useRef(null);
-  const navigate = useNavigate();
   const dispathch = useDispatch();
 
   const handleSignIn = () => {
@@ -43,6 +41,7 @@ const Login = () => {
             .then(() => {
               // Profile updated!
               const { uid, email, displayName, photoURL } = auth.currentUser;
+              console.log(auth);
               dispathch(
                 addUser({
                   uid: uid,
@@ -51,7 +50,6 @@ const Login = () => {
                   photoURL: photoURL,
                 })
               );
-              navigate("/browse");
             })
             .catch((error) => {
               setErrorMsg(error);
@@ -71,7 +69,6 @@ const Login = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
-          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -85,10 +82,7 @@ const Login = () => {
     <>
       <Header />
       <div className="absolute">
-        <img
-          alt="Bg-image"
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/ab4b0b22-2ddf-4d48-ae88-c201ae0267e2/0efe6360-4f6d-4b10-beb6-81e0762cfe81/IN-en-20231030-popsignuptwoweeks-perspective_alpha_website_large.jpg"
-        />
+        <img alt="Bg-image" src={LOGO} />
       </div>
       <form
         onSubmit={(e) => e.preventDefault()}
