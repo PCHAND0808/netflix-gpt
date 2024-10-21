@@ -69,6 +69,7 @@ const Login = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
+          console.log(user);
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -82,7 +83,7 @@ const Login = () => {
     <>
       <Header />
       <div className="absolute">
-        <img alt="Bg-image" src={LOGO} />
+        <img alt="bg" src={LOGO} />
       </div>
       <form
         onSubmit={(e) => e.preventDefault()}
@@ -123,7 +124,7 @@ const Login = () => {
           {!signUp ? `New to Netflix?` : `Already a member?`}
           <a
             className="text-blue-500"
-            href=""
+            href="/"
             onClick={(e) => {
               e.preventDefault();
               setsignUp(!signUp);

@@ -11,16 +11,6 @@ const Browse = () => {
   usePopularMovies();
   useTopRatedMovies();
   useUpcomingMovies();
-  {
-    /*
-        - main Container
-          - video container
-          - Title
-        - Secondary Container
-            - Movies*n
-            - Cards*n  
-     */
-  }
 
   return (
     <div>
